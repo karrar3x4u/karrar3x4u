@@ -41,7 +41,7 @@ jobs:
           ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0" "ndk;23.1.7779620"
 
       - name: Build APK
-        working-directory: ./sam3x
+        working-directory: sam3x
         run: |
           buildozer android debug
 
@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Sam3X-APK
-          path: sam3x/bin/*.apk
+          path: bin/*.apk
