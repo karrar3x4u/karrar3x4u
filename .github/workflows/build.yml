@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
       P4A_NO_DOWNLOAD_CACHE: "1"
 
     steps:
@@ -25,7 +26,7 @@ jobs:
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip wget
           pip install --upgrade pip
-          pip install buildozer cython virtualenv
+          pip install --upgrade buildozer cython virtualenv
 
       - name: Set environment variables
         run: |
