@@ -1,18 +1,31 @@
 [app]
 
-
+# اسم التطبيق الظاهر للمستخدم
 title = StreamScutum
+
+# اسم الحزمة (حروف فقط، بدون نقاط)
 package.name = streamscutum
-package.domain = org.karar
-version = 1.0
-source.dir = streamscutum
+
+# المجال العكسي (يفضل أن يكون خاصًا بك، مثلاً نطاقك أو حسابك على GitHub)
+package.domain = https://github.com/karrar3x4u
+
+# مسار المجلد الذي يحتوي على main.py (هنا هو نفس المجلد)
+source.dir = https://github.com/karrar3x4u/karrar3x4u .
+
+# اسم الملف الرئيسي
 source.main = main.py
-requirements = python3,flask
-orientation = portrait
+
+# رقم الإصدار
+version = 1.0
+
+# المتطلبات الأساسية
+requirements = python3, flask
+
+# إذن استخدام الإنترنت وقراءة ملفات الجهاز
 android.permissions = INTERNET,READ_EXTERNAL_STORAGE
-android.api = 33
-android.minapi = 21
-android.archs = armeabi-v7a
-android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
-copy_libs = 1
-log_level = 2
+
+# اتجاه الشاشة
+orientation = portrait
+
+# وضع التشغيل
+fullscreen = 0
