@@ -9,7 +9,7 @@ source.include_exts = py,html
 version = 0.1
 
 # المتطلبات (مكتبات بايثون)
-requirements = python3, flask
+requirements = python3,
 
 # إعدادات العرض
 orientation = portrait
