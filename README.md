@@ -7,6 +7,6 @@
 - ⚡ Fun fact: ...
 
 <!---
-karrar3x4u/karrar3x4u is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+karrar3x4u/sam3x is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
