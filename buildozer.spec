@@ -1,10 +1,29 @@
+
 [app]
-
 # اسم التطبيق الظاهر للمستخدم
-title = StreamScutum
+title = Sam3x
 
-# اسم الحزمة (حروف فقط، بدون نقاط)
-package.name = streamscutum
+# اسم الحزمة (يجب أن يكون فريدًا)
+package.name = sam3x
+
+# نطاق الحزمة (عادةً ما يكون معكوسًا من اسم النطاق أو اسم المستخدم)
+package.domain = com.karrar3x4u
+
+# مجلد المصدر (عادةً ما يكون المجلد الحالي)
+source.dir = .
+
+# رقم الإصدار
+version = 0.1
+
+# المتطلبات اللازمة لتشغيل التطبيق
+requirements = python3,kivy
+
+# الحد الأدنى لإصدار أندرويد المدعوم
+android.minapi = 21
+
+# (اختياري) تحديد أيقونة التطبيق
+# icon.filename = %(source.dir)s/icon.png
+
 
 # المجال العكسي (يفضل أن يكون خاصًا بك، مثلاً نطاقك أو حسابك على GitHub)
 package.domain = https://github.com/karrar3x4u
