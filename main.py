@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory, render_template_string
 import os
 
 app = Flask(__name__)
-VIDEO_DIR = "/mnt/sdcard/Movies"  # مجلد الأفلام في جهاز Android (يمكن تغييره)
+VIDEO_DIR = "/mnt/sdcard/Movies"  # غيّره لو مسار مختلف
 
 @app.route("/")
 def index():
