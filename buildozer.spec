@@ -1,13 +1,15 @@
 [app]
 
+
 title = StreamScutum
 package.name = streamscutum
 package.domain = org.karar
 version = 1.0
-source.dir = .
+source.dir = streamscutum
 source.main = main.py
-requirements = python3,kivy
+requirements = python3,flask
 orientation = portrait
+android.permissions = INTERNET,READ_EXTERNAL_STORAGE
 android.api = 33
 android.minapi = 21
 android.archs = armeabi-v7a
