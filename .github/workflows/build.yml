@@ -37,7 +37,7 @@ jobs:
       - name: Patch buildozer.spec for StreamSanctum
         run: |
           cat > buildozer.spec <<EOF
-[app]
+
 title = StreamSanctum
 package.name = streamsanctum
 package.domain = org.saden
