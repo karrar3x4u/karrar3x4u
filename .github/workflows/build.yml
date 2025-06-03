@@ -25,8 +25,9 @@ jobs:
         pip install buildozer cython
 
     - name: Create buildozer.spec
-      run: |
-        echo '[app]
+  run: |
+    printf "[app]
+
 title = Sam3X
 package.name = sam3x
 package.domain = org.karrar.sam
@@ -40,7 +41,8 @@ fullscreen = 0
 
 [buildozer]
 log_level = 2
-warn_on_root = 1' > buildozer.spec
+warn_on_root = 1
+" > buildozer.spec
 
     - name: Build APK
       run: |
