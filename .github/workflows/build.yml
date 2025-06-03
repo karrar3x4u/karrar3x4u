@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: 📥 Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Python
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: "3.10"
 
-    - name: Install dependencies and Android SDK
+    - name: ⚙️ Install dependencies and Android SDK
       run: |
         sudo apt update
         sudo apt install -y git zip unzip openjdk-17-jdk python3-pip python3-setuptools python3-wheel libffi-dev libssl-dev build-essential
@@ -32,30 +32,32 @@ jobs:
         $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-33" "build-tools;34.0.0"
         echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
 
-    - name: Create buildozer.spec
+    - name: 📝 Create buildozer.spec (if needed)
       run: |
-        echo "[app]" > buildozer.spec
-        echo "title = Sam3X" >> buildozer.spec
-        echo "package.name = sam3x" >> buildozer.spec
-        echo "package.domain = org.karrar.sam" >> buildozer.spec
-        echo "source.dir = ." >> buildozer.spec
-        echo "source.include_exts = py,yaml" >> buildozer.spec
-        echo "version = 0.1" >> buildozer.spec
-        echo "entrypoint = main.py" >> buildozer.spec
-        echo "requirements = python3,kivy,pyyaml" >> buildozer.spec
-        echo "orientation = portrait" >> buildozer.spec
-        echo "fullscreen = 0" >> buildozer.spec
-        echo "[buildozer]" >> buildozer.spec
-        echo "log_level = 2" >> buildozer.spec
-        echo "warn_on_root = 1" >> buildozer.spec
+        if [ ! -f buildozer.spec ]; then
+          echo "[app]" > buildozer.spec
+          echo "title = Sam3X" >> buildozer.spec
+          echo "package.name = sam3x" >> buildozer.spec
+          echo "package.domain = org.karrar.sam" >> buildozer.spec
+          echo "source.dir = ." >> buildozer.spec
+          echo "source.include_exts = py,yaml" >> buildozer.spec
+          echo "version = 0.1" >> buildozer.spec
+          echo "entrypoint = main.py" >> buildozer.spec
+          echo "requirements = python3,kivy,pyyaml" >> buildozer.spec
+          echo "orientation = portrait" >> buildozer.spec
+          echo "fullscreen = 0" >> buildozer.spec
+          echo "[buildozer]" >> buildozer.spec
+          echo "log_level = 2" >> buildozer.spec
+          echo "warn_on_root = 1" >> buildozer.spec
+        fi
 
-    - name: Build APK
+    - name: 🛠 Build APK
       run: |
         export ANDROID_SDK_ROOT=$HOME/android-sdk
         buildozer android debug
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v3
+    - name: 📦 Upload APK
+      uses: actions/upload-artifact@v4
       with:
         name: sam3x-apk
         path: bin/*.apk
