@@ -17,7 +17,7 @@ android.build_tools = 34.0.0
 android.permissions = INTERNET
 android.allow_backup = 1
 
-# أهم سطر:
+android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
 android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b
 
 [buildozer]
