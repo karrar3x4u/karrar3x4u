@@ -9,10 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      ANDROIDSDK: ${{ github.workspace }}/android-sdk
-      ANDROIDNDK: ${{ github.workspace }}/android-ndk
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -25,21 +21,13 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pip git zip unzip openjdk-11-jdk build-essential autoconf libtool pkg-config zlib1g-dev libffi-dev libssl-dev libc6-dev libsqlite3-dev libpng-dev libjpeg-dev wget
+          sudo apt-get install -y \
+            python3-pip git zip unzip openjdk-11-jdk \
+            build-essential autoconf automake libtool m4 pkg-config zlib1g-dev \
+            libffi-dev libssl-dev libc6-dev \
+            libsqlite3-dev libpng-dev libjpeg-dev
 
-      - name: Download Android SDK Command Line Tools
-        run: |
-          mkdir -p $ANDROIDSDK/cmdline-tools
-          wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip
-          unzip cmdline-tools.zip -d $ANDROIDSDK/cmdline-tools
-          rm cmdline-tools.zip
-
-      - name: Setup Android SDK and NDK
-        run: |
-          yes | $ANDROIDSDK/cmdline-tools/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROIDSDK "platform-tools" "platforms;android-33" "build-tools;33.0.0" "ndk;25.1.8937393"
-          mv $ANDROIDSDK/ndk/25.1.8937393 $ANDROIDNDK
-
-      - name: Install Buildozer and dependencies
+      - name: Install Buildozer and Python dependencies
         run: |
           pip install --upgrade cython
           pip install buildozer
