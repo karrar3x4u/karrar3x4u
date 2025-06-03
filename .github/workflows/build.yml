@@ -42,11 +42,11 @@ jobs:
 
       - name: Build APK
         run: |
-          cd sam3x
+          cd streamscutum
           buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Sam3X-APK
-          path: sam3x/bin/*.apk
+          name: StreamScutum-APK
+          path: streamscutum/bin/*.apk
