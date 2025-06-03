@@ -29,6 +29,7 @@ jobs:
         wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O cmdline-tools.zip
         unzip cmdline-tools.zip -d cmdline-tools
 
+        # إصلاح المسار: يجب نقل cmdline-tools/داخلية فقط
         mkdir -p $HOME/android-sdk/cmdline-tools/latest
         mv cmdline-tools/cmdline-tools/* $HOME/android-sdk/cmdline-tools/latest/
 
@@ -36,15 +37,14 @@ jobs:
         echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
         echo "PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH" >> $GITHUB_ENV
 
+        # قبول التراخيص وتثبيت الأدوات
         yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/android-sdk --licenses
 
-        # تثبيت الأدوات الأساسية + build-tools + NDK
         $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/android-sdk \
           "platform-tools" \
           "platforms;android-33" \
           "build-tools;34.0.0" \
           "cmdline-tools;latest" \
-          "tools" \
           "ndk;25.1.8937393"
 
     - name: 📝 Create buildozer.spec (if needed)
