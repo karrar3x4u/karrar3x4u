@@ -24,13 +24,15 @@ jobs:
           sudo apt-get install -y \
             python3-pip git zip unzip openjdk-11-jdk \
             build-essential autoconf automake libtool m4 pkg-config zlib1g-dev \
-            libffi-dev libssl-dev libc6-dev \
-            libsqlite3-dev libpng-dev libjpeg-dev
+            libffi-dev libssl-dev libc6-dev libsqlite3-dev libpng-dev libjpeg-dev
 
-      - name: Install Buildozer and Python dependencies
+      - name: Set JAVA_HOME to JDK 11
+        run: echo "JAVA_HOME=/usr/lib/jvm/temurin-11-jdk-amd64" >> $GITHUB_ENV
+
+      - name: Upgrade Buildozer and dependencies
         run: |
           pip install --upgrade cython
-          pip install buildozer
+          pip install --upgrade buildozer python-for-android
 
       - name: Build APK with Buildozer
         run: |
