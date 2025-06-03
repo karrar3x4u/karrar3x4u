@@ -47,11 +47,11 @@ jobs:
           cd ~/.buildozer/android/platform
           wget https://dl.google.com/android/repository/android-ndk-r25b-linux.zip -O android-ndk-r25b-linux.zip
           unzip -q android-ndk-r25b-linux.zip
-          mv android-ndk-r25b android-ndk-r25b
+          ls -l
 
       - name: Inject NDK path into buildozer.spec
         run: |
-          sed -i '/app/a android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b' buildozer.spec
+          sed -i '/\app\/a android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b' buildozer.spec
 
       - name: Build APK
         run: |
@@ -61,4 +61,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Sam3X-APK
-          path: bin/*.ap
+          path: bin/*.apk
