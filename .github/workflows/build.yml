@@ -21,16 +21,16 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip wget
           pip install --upgrade pip
           pip install buildozer cython virtualenv
 
       - name: Set environment variables
         run: |
           echo "ANDROID_SDK_ROOT=$HOME/.buildozer/android/platform/android-sdk" >> $GITHUB_ENV
-          echo "PATH=$PATH:$HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_ENV
+          echo "$HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
 
-      - name: Setup Android SDK & NDK
+      - name: Setup Android SDK
         run: |
           mkdir -p ~/.buildozer/android/platform/android-sdk/cmdline-tools
           cd ~/.buildozer/android/platform/android-sdk/cmdline-tools
@@ -38,15 +38,27 @@ jobs:
           unzip cmdline-tools.zip
           mv cmdline-tools latest
           yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-          ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0" "ndk;23.1.7779620"
+          ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager \
+            "platform-tools" "platforms;android-31" "build-tools;31.0.0"
+
+      - name: Download and extract Android NDK (manual)
+        run: |
+          mkdir -p ~/.buildozer/android/platform
+          cd ~/.buildozer/android/platform
+          wget https://dl.google.com/android/repository/android-ndk-r25b-linux.zip -O android-ndk-r25b-linux.zip
+          unzip -q android-ndk-r25b-linux.zip
+          mv android-ndk-r25b android-ndk-r25b
+
+      - name: Inject NDK path into buildozer.spec
+        run: |
+          sed -i '/app/a android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b' buildozer.spec
 
       - name: Build APK
         run: |
-        
           buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Sam3X-APK
-          path: sam3x/bin/*.apk
+          path: bin/*.ap
