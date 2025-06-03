@@ -26,8 +26,7 @@ jobs:
 
     - name: Create buildozer.spec
       run: |
-        cat > buildozer.spec <<EOF
-[app]
+        echo '[app]
 title = Sam3X
 package.name = sam3x
 package.domain = org.karrar.sam
@@ -41,8 +40,7 @@ fullscreen = 0
 
 [buildozer]
 log_level = 2
-warn_on_root = 1
-EOF
+warn_on_root = 1' > buildozer.spec
 
     - name: Build APK
       run: |
