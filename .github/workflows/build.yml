@@ -26,6 +26,8 @@ jobs:
             build-essential autoconf automake libtool m4 pkg-config zlib1g-dev \
             libffi-dev libssl-dev libc6-dev libsqlite3-dev libpng-dev libjpeg-dev
 
+            env: ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
+
       - name: Set JAVA_HOME to JDK 11
         run: echo "JAVA_HOME=/usr/lib/jvm/temurin-11-jdk-amd64" >> $GITHUB_ENV
 
