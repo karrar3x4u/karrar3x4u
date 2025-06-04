@@ -30,12 +30,6 @@ jobs:
           pip install --upgrade pip
           pip install --upgrade buildozer cython virtualenv
 
-      - name: Initialize libtool macros
-        run: |
-          aclocal
-          libtoolize --copy --force
-          autoreconf --install --force --verbose
-
       - name: Set environment variables
         run: |
           echo "ANDROID_SDK_ROOT=$HOME/.buildozer/android/platform/android-sdk" >> $GITHUB_ENV
