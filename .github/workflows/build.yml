@@ -23,16 +23,31 @@ jobs:
 
       - name: Install dependencies
         run: |
-             sudo apt update
-             sudo apt install -y \
-             git zip unzip openjdk-17-jdk python3-pip wget \
-              build-essential ccache libtool autoconf automake pkg-config \
-             libltdl-dev  # ← هذا السطر هو الحل
-             pip install --upgrade pip
-             pip install --upgrade buildozer cython virtualenv
+          sudo apt update
+          sudo apt install -y \
+            git zip unzip openjdk-17-jdk python3-pip wget \
+            build-essential ccache libtool autoconf automake pkg-config \
+            libltdl-dev
+          pip install --upgrade pip
+          pip install --upgrade buildozer cython virtualenv
+
+      - name: Install Apache Ant
+        run: |
+          wget https://archive.apache.org/dist/ant/binaries/apache-ant-1.9.4-bin.tar.gz
+          tar -xzf apache-ant-1.9.4-bin.tar.gz
+          sudo mv apache-ant-1.9.4 /opt/ant
+          echo "ANT_HOME=/opt/ant" >> $GITHUB_ENV
+          echo "/opt/ant/bin" >> $GITHUB_PATH
+
+      - name: Initialize libtool macros
+        run: |
+          aclocal
+          libtoolize
+          autoreconf --install
+
       - name: Patch pyjnius for Python 3 compatibility
         run: |
-             sed -i 's/isinstance(arg, long)/False/g' .buildozer/android/platform/python-for-android/pythonforandroid/recipes/pyjnius/jnius_utils.pxi || true
+          sed -i 's/isinstance(arg, long)/False/g' .buildozer/android/platform/python-for-android/pythonforandroid/recipes/pyjnius/jnius_utils.pxi || true
 
       - name: Set environment variables
         run: |
