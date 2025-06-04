@@ -39,12 +39,6 @@ jobs:
           echo "ANT_HOME=/opt/ant" >> $GITHUB_ENV
           echo "/opt/ant/bin" >> $GITHUB_PATH
 
-      - name: Initialize libtool macros
-        run: |
-          aclocal
-          libtoolize
-          autoreconf --install
-
       - name: Patch pyjnius for Python 3 compatibility
         run: |
           sed -i 's/isinstance(arg, long)/False/g' .buildozer/android/platform/python-for-android/pythonforandroid/recipes/pyjnius/jnius_utils.pxi || true
