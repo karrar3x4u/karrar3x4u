@@ -6,7 +6,7 @@ source.dir = .
 source.include_exts = py,yaml
 version = 0.1
 entrypoint = main.py
-requirements = python3,kivy,pyyaml,https://github.com/kivy/pyjnius/archive/master.zip
+requirements = python3,kivy,pyyaml,pyjnius==1.4.0,cython>=3.0
 orientation = portrait
 fullscreen = 0
 android.api = 33
@@ -16,6 +16,7 @@ android.permissions = INTERNET
 android.allow_backup = 
 android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
 android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b
+
 [buildozer]
 log_level = 2
 warn_on_root = 1
