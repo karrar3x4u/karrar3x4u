@@ -6,7 +6,7 @@ source.dir = .
 source.include_exts = py,yaml
 version = 0.1
 entrypoint = main.py
-requirements = python3,kivy,pyyaml,cython==0.29.33,https://github.com/kivy/pyjnius/archive/master.zip
+requirements = python3,kivy,pyyaml,cython==0.29.33,git+https://github.com/kivy/pyjnius.git@fix-python3-long
 orientation = portrait
 fullscreen = 0
 android.api = 33
