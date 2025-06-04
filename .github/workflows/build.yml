@@ -30,7 +30,9 @@ jobs:
              libltdl-dev  # ← هذا السطر هو الحل
              pip install --upgrade pip
              pip install --upgrade buildozer cython virtualenv
-
+      - name: Patch pyjnius for Python 3 compatibility
+        run: |
+             sed -i 's/isinstance(arg, long)/False/g' .buildozer/android/platform/python-for-android/pythonforandroid/recipes/pyjnius/jnius_utils.pxi || true
 
       - name: Set environment variables
         run: |
