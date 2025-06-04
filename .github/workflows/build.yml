@@ -31,13 +31,6 @@ jobs:
              pip install --upgrade pip
              pip install --upgrade buildozer cython virtualenv
 
-      - name: Setup libtool macros (fix LT_SYS_SYMBOL_USCORE)
-        run: |
-          mkdir -p m4
-          aclocal -I m4
-          libtoolize --force --copy
-          automake --add-missing --copy
-          autoreconf -fi
 
       - name: Set environment variables
         run: |
