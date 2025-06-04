@@ -56,7 +56,10 @@ jobs:
         run: |
           mkdir -p ~/.buildozer/android/platform/android-sdk/tools/bin
           ln -s ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
-
+      - name: Patch autotools
+        run: |
+              sudo apt install -y libtool autoconf automake
+              find . -name 'configure.ac' -execdir autoreconf -fi \;
       - name: Build APK
         run: |
           buildozer android debug
